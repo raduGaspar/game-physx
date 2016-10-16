@@ -1,2 +1,11 @@
-# game-physx
-A small utility for JavaScript game making
+# Game Physx
+
+### install dependencies
+```sh
+npm install
+```
+
+### run server
+```sh
+gulp
+```

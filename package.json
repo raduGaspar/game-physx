@@ -1,0 +1,33 @@
+{
+  "name": "babel-gulp-webpack",
+  "version": "0.0.0",
+  "description": "An example of how to use Babel, Gulp and Webpack together.",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "gulp build"
+  },
+  "keywords": [
+    "webpack",
+    "gulp",
+    "babel"
+  ],
+  "author": "Radu B. Gaspar <radu.bogdan.gaspar@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.16.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "copy-webpack-plugin": "^3.0.1",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.7",
+    "html-webpack-plugin": "^2.22.0",
+    "node-sass": "^3.10.0",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.1"
+  }
+}
