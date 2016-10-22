@@ -2,6 +2,8 @@ import { Game, Scene } from '../engine';
 
 require('../../scss/styles.scss');
 
+let movementMultiplier = 1;
+
 class Square extends Scene {
   constructor(x=0, y=0, size=40, color='#900') {
     super();
@@ -11,14 +13,18 @@ class Square extends Scene {
     this.color = color;
   }
   update() {
-    this.x += 1;
-    this.y += 1.5;
+    this.x += 1 * movementMultiplier;
+    this.y += 1.5 * movementMultiplier;
+    if(this.SHIFT) {
+      movementMultiplier = 2;
+    } else {
+      movementMultiplier = 1;
+    }
     Scene.wrap(this);
   }
   render() {
     this.ctx.save();
     this.ctx.beginPath();
-    this.ctx.translate(this.x, this.y);
     this.ctx.fillStyle = this.color;
     this.ctx.fillRect(this.x, this.y, this.size, this.size);
     this.ctx.closePath();

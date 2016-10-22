@@ -61,17 +61,17 @@ export default class Scene extends Canvas {
   }
 
   static wrap(object) {
-    let halfWidth = (object.width || object.size) * 0.5;
-    let halfHeight = (object.height || object.size) * 0.5;
+    let width = (object.width || object.size);
+    let height = (object.height || object.size);
 
-    if(object.x > object.scene.width - object.x + halfWidth) {
-      object.x = 0 - halfWidth;
-    } else if (object.x < 0 - halfWidth) {
-      object.x = object.scene.width - object.x + halfWidth;
-    } else if(object.y > object.scene.height - object.y + halfHeight) {
-      object.y = 0 - halfHeight;
-    } else if (object.y < 0 - halfHeight) {
-      object.y = object.scene.height - object.y + halfHeight;
+    if(object.x > object.scene.width) {
+      object.x = -width;
+    } else if (object.x < -width) {
+      object.x = object.scene.width;
+    } else if(object.y > object.scene.height) {
+      object.y = -height;
+    } else if (object.y < -height) {
+      object.y = object.scene.height;
     }
   }
 };
