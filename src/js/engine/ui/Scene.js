@@ -1,35 +1,39 @@
 import Canvas from './Canvas';
 
-let sceneElements = [];
-
 export default class Scene extends Canvas {
-  constructor(x=0, y=0, width=0, height=0) {
+  constructor(x=0, y=0, width, height) {
     super();
+    this.children = [];
     this.x = x;
     this.y = y;
-    this.sWidth = width;
-    this.sHeight = height;
+
+    // store initial width and height
+    this.initWidth = width;
+    this.initHeight = height;
+    this.width = width;
+    this.height = height;
   }
   add(elem) {
     if(elem.constructor === Array) {
-      for(let e of elem) {
-        elem.scene = this;
-        sceneElements.push(elem);
+      for(let el of elem) {
+        el.scene = this;
+        this.children.push(el);
       }
     } else {
       elem.scene = this;
-      sceneElements.push(elem);
+      this.children.push(elem);
     }
   }
   remove(elem) {
-    let idx = sceneElements.indexOf(elem);
+    let idx = this.children.indexOf(elem);
     if(idx > -1) {
-      sceneElements.splice(idx, 1);
+      this.children.splice(idx, 1);
     }
   }
   update() {
-    this.width = this.sWidth || this.canvas.width;
-    this.height = this.sHeight || this.canvas.height;
+    // resize scene to fit canvas if no initial size was provided
+    this.width = this.initWidth || this.canvas.width;
+    this.height = this.initHeight || this.canvas.height;
 
     // clear screen
     this.ctx.clearRect(this.x, this.y, this.width, this.height);
@@ -46,7 +50,7 @@ export default class Scene extends Canvas {
     this.ctx.translate(this.x, this.y);
 
     // update and render all scene elements
-    for(let elem of sceneElements) {
+    for(let elem of this.children) {
       if(elem.update) {
         elem.update();
       }

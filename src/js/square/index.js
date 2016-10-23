@@ -32,7 +32,20 @@ class Square extends Scene {
   }
 };
 
-let scene = new Scene(20, 33, 400, 200);
-let game = new Game(scene);
-let square = new Square();
-scene.add(square);
+// create scenes
+const sceneA = new Scene(20, 33, 400, 200);
+const sceneB = new Scene(sceneA.x+sceneA.width+10, 33, 400, 200);
+
+// create squares
+const squareA = new Square();
+const squareB = new Square(130, 100, 20, '#090');
+
+// add scenes to game
+const game = new Game([
+  sceneA,
+  sceneB
+]);
+
+// add squares to scene
+sceneA.add(squareA);
+sceneB.add(squareB);
