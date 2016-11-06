@@ -3,6 +3,8 @@ export { default as EventDispatcher } from './events/EventDispatcher';
 
 export { default as Keyboard } from './inputs/Keyboard';
 
+export { default as VerletModel } from './models/VerletModel';
+
 export { default as AssetsLoader } from './utils/AssetsLoader';
 export { default as Utils } from './utils/Utils';
 
