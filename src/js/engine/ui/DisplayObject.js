@@ -1,5 +1,7 @@
 import Scene from './Scene';
 
+const allowedActions = ['moveTo', 'lineTo'];
+
 export default class DisplayObject extends Scene {
   constructor(x=0, y=0) {
     super();
@@ -16,6 +18,15 @@ export default class DisplayObject extends Scene {
     } else {
       elem.scene = this.scene;
       this.children.push(elem);
+    }
+  }
+  draw(actions, coordinates) {
+    for(let a of actions.keys()) {
+      if(allowedActions[actions[a]]) {
+        this.ctx[
+          allowedActions[actions[a]]
+        ](...coordinates[a]);
+      }
     }
   }
   remove(elem) {

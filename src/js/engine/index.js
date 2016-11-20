@@ -11,6 +11,7 @@ export { default as Utils } from './utils/Utils';
 export { default as AnimatedSprite } from './ui/AnimatedSprite';
 export { default as Canvas } from './ui/Canvas';
 export { default as DisplayObject } from './ui/DisplayObject';
+export { default as Particle } from './ui/Particle';
 export { default as Scene } from './ui/Scene';
 export { default as SpriteSheet } from './ui/SpriteSheet';
 
