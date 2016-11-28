@@ -1,4 +1,5 @@
 import { Scene, DisplayObject, AssetsLoader, KeyboardEvents } from '../../engine';
+import Bullet from './Bullet';
 
 export default class Player extends DisplayObject {
   constructor(model) {
@@ -51,6 +52,7 @@ export default class Player extends DisplayObject {
     if(this.SPACE) {
       this.model.fire = true;
       this.assets.laserThum.play();
+      this.scene.add(new Bullet(this.model));
     }
 
     // wrap the square to the scene bounds

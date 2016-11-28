@@ -12,6 +12,22 @@ export default class Map extends DisplayObject {
     this.mapH = this.scene.height * this.mapScaleFactor;
   }
 
+  renderMarker(set) {
+    for(let child of set) {
+      if (child.children.length) {
+        this.renderMarker(child.children);
+      } else {
+        this.ctx.save();
+        this.ctx.beginPath();
+        this.ctx.fillStyle = child.model.color;
+        this.ctx.rect(...this.getSize(child.model));
+        this.ctx.fill();
+        this.ctx.closePath();
+        this.ctx.restore();
+      }
+    }
+  }
+
   render() {
     // draw map container
     this.ctx.save();
@@ -25,15 +41,8 @@ export default class Map extends DisplayObject {
     this.ctx.closePath();
     this.ctx.restore();
 
-    for(var child of this.children) {
-      this.ctx.save();
-      this.ctx.beginPath();
-      this.ctx.fillStyle = child.model.color;
-      this.ctx.rect(...this.getSize(child.model));
-      this.ctx.fill();
-      this.ctx.closePath();
-      this.ctx.restore();
-    }
+    this.renderMarker(this.children);
+
   }
   getSize(target) {
     const { mapW, mapH, mapScaleFactor, markerSize } = this;

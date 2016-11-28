@@ -1,6 +1,7 @@
 import { Game, Scene, AssetsLoader } from '../engine';
 import Player from './objects/Player';
 import StarField from './objects/StarField';
+import RockField from './objects/RockField';
 import Map from './objects/Map';
 import PlayerModel from './models/PlayerModel';
 
@@ -15,12 +16,16 @@ let player = new Player(playerModel);
 // generate a starfield with 300 stars
 let starField = new StarField(playerModel, 300);
 
+// generate a rockfield
+let rockField = new RockField(playerModel);
+
 // create the game map
 let map = new Map();
 
 // track the game objects
 map.add([
-  player
+  player,
+  rockField,
 ]);
 
 let initGame = () => {
@@ -31,6 +36,7 @@ let initGame = () => {
   // render starfield, player and map
   scene.add([
     starField,
+    rockField,
     player,
     map
   ]);
